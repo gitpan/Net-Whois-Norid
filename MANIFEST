@@ -1,0 +1,8 @@
+Build.PL
+lib/Net/Whois/Norid.pm
+MANIFEST			This list of files
+t/01use.t
+t/02pod.t
+t/03podcoverage.t
+t/04parse.t
+META.yml

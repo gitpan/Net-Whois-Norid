@@ -1,0 +1,14 @@
+---
+name: Net-Whois-Norid
+version: 0.01
+author:
+  - Marcus Ramberg C<mramberg@cpan.org>
+abstract: Lookup WHOIS data from norid.
+license: perl
+requires:
+  HTTP::BrowserDetect: 0
+provides:
+  Net::Whois::Norid:
+    file: lib/Net/Whois/Norid.pm
+    version: 0.01
+generated_by: Module::Build version 0.26
