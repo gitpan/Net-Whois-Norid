@@ -1,6 +1,6 @@
 ---
 name: Net-Whois-Norid
-version: 0.01
+version: 0.02
 author:
   - Marcus Ramberg C<mramberg@cpan.org>
 abstract: Lookup WHOIS data from norid.
@@ -10,5 +10,5 @@ requires:
 provides:
   Net::Whois::Norid:
     file: lib/Net/Whois/Norid.pm
-    version: 0.01
+    version: 0.02
 generated_by: Module::Build version 0.26

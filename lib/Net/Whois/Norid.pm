@@ -3,7 +3,7 @@ package Net::Whois::Norid;
 use Net::Whois::Raw;
 use strict;
 
-our $VERSION='0.01';
+our $VERSION='0.02';
 use vars qw/$AUTOLOAD/;
 
 sub AUTOLOAD {
@@ -55,9 +55,9 @@ Net::Whois::Norid - Lookup WHOIS data from norid.
 
 =head1 SYNOPSIS
 
-my $whois = Net::whois::Norid->new('thefeed.no');
-print $whois->Postal_Address;
-print $whois->Organization->Fax_Number;
+  my $whois = Net::whois::Norid->new('thefeed.no');
+  print $whois->postal_address;
+  print $whois->organization->fax_number;
 
 =head1 DESCRIPTION
 
