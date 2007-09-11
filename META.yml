@@ -16,4 +16,4 @@ no_index:
     - t
 requires: 
   Net::Whois::Raw: 0
-version: 0.03
+version: 0.04
