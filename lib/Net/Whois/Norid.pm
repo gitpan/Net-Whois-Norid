@@ -3,7 +3,7 @@ package Net::Whois::Norid;
 use Net::Whois::Raw;
 use strict;
 
-our $VERSION='0.02';
+our $VERSION='0.03';
 use vars qw/$AUTOLOAD/;
 
 sub AUTOLOAD {
@@ -24,9 +24,10 @@ sub new {
 sub get {
     my ($self,$key) = @_;
     $key=lc($key);
-    if ($self->{"${key}_handle"} ) {
-          return map { $self->new($_) }
-                 split (m/\n/,$self->{"${key}_handle"});
+    if (exists $self->{"${key}_handle"} ) {
+        my @objs=(map { $self->new($_) }
+                split (m/\n/,$self->{"${key}_handle"}));
+        return ( wantarray ? @objs : $objs[0] );
     }
     return $self->{$key};
 }
@@ -37,15 +38,15 @@ sub lookup {
 }
 
 sub _parse {
-  my ($self,$whois)=@_;
-  foreach my $line (split("\n",$whois)) {
-      if (my ($key,$value) = $line =~ m/^(\w+[^.]+)\.{2,}\:\s*(.+)$/) {
-        # replace spaces and - with _ for accessors.
-        $key =~ y/ -/_/;
-        $key = lc($key);
-        $self->{$key} = ($self->{$key} ? $self->{$key}."\n$value" :
-                                         $value);
-    }
+    my ($self,$whois)=@_;
+    foreach my $line (split("\n",$whois)) {
+        if (my ($key,$value) = $line =~ m/^(\w+[^.]+)\.{2,}\:\s*(.+)$/) {
+            # replace spaces and - with _ for accessors.
+            $key =~ y/ -/_/;
+            $key = lc($key);
+            $self->{$key} = 
+                ($self->{$key} ? $self->{$key}."\n$value" : $value);
+      }
   }
 }
 
@@ -56,7 +57,7 @@ Net::Whois::Norid - Lookup WHOIS data from norid.
 =head1 SYNOPSIS
 
   my $whois = Net::whois::Norid->new('thefeed.no');
-  print $whois->postal_address;
+  print $whois->post_address;
   print $whois->organization->fax_number;
 
 =head1 DESCRIPTION
@@ -107,5 +108,9 @@ is returned.
 =head1 AUTHOR
 
 Marcus Ramberg C<mramberg@cpan.org>
+
+=head1 LICENSE 
+
+This module is distributed under the same terms as Perl itself.
 
 1;
